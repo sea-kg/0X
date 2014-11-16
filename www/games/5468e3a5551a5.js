@@ -1,0 +1,1 @@
+{"gameid":"5468e3a5551a5","author":"sea-kg","next_player":"sea-kg","winner":"?","fields":{"c00":"?","c01":"?","c02":"?","c10":"?","c11":"X","c12":"0","c20":"?","c21":"?","c22":"?"},"player2":"ff"}
