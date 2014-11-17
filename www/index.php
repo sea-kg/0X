@@ -197,7 +197,8 @@
 	<head>
 		<title> Tic Tac Toe </title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script type="text/javascript">		
+		<link rel="stylesheet" href="css/main.css" />
+		<script type="text/javascript">
 //<![CDATA[
 
 function load_game() {
@@ -268,7 +269,7 @@ function set_here(e) {
 //]]>
 		</script>
 	</head>
-	<body onload="onload_body();">
+	<body class="x_main" onload="onload_body();">
 <?
 	if (isset( $_GET['game_not_exists']))
 	{
@@ -284,55 +285,123 @@ function set_here(e) {
 	{
 		echo '<h1>Game busy!</h1><br>';
 	}
+	echo '<h1>0X</h1>';
+	echo '<div class="x_content">';
 
 	if (!isset($_SESSION['nick'])) {
-		?>
-			<form>Your nick:
-				<input type="text" name="setnick" value=""/>
-				<input type="submit" value="logon"/>
-			</form>
-		<?
+		echo '
+			<div class="x_line">
+				<div class="x_label_name">Your Nick:</div>
+				<div class="x_label_value">
+					<form>
+						<input type="text" name="setnick" value=""/>
+						<input type="submit" value="logon"/>
+					</form>
+				</div> 
+			</div>
+		';
 	} else {
-		echo 'Your Nick: <div id="nick">'.$_SESSION['nick'].'</div> <a href="?rmnick">logoff</a><br><br>';
+		echo '
+			<div class="x_line">
+				<div class="x_label_name">Your Nick:</div> 
+				<div class="x_label_value" id="nick">'.$_SESSION['nick'].'</div>
+			</div>
+			<div class="x_line">
+				<div class="x_label_name"></div> 
+				<div class="x_label_value"><a href="?rmnick">logoff</a></div>
+			</div>
+			<div class="x_line">
+				<div class="x_label_name"></div> 
+				<div class="x_label_value"><hr></div>
+			</div>
+		';
 		if (!isset($_SESSION['gameid']))
 		{
-			echo '<a href="?create_game">create game</a><br> or 
-				<form>GameID:
-					<input type="text" name="setgameid" value=""/>
-					<input type="submit" value="select"/>
-				</form>
+			echo '
+			<div class="x_line">
+				<div class="x_label_name">GameID:</div>
+				<div class="x_label_value">
+					<form>
+						<input type="text" name="setgameid" value=""/>
+						<input type="submit" value="select"/>
+					</form>
+				</div>
+			</div>
+			<div class="x_line">
+				<div class="x_label_name"></div>
+				<div class="x_label_value">
+					or <a href="?create_game">create game</a>
+				</div>
+			</div>
+			<div class="x_line">
+				<div class="x_label_name"></div> 
+				<div class="x_label_value"><hr></div>
+			</div>
 			';
 		} else {
-			echo 'GameID: <div id="gameid">'.$_SESSION['gameid'].'</div> <a href="?exit_game">exit</a><br>';
 			echo '
-			Author: <div id="author">?</div>
-			Player2: <div id="player2">?</div>
-			<table bgcolor=black cellpadding=10 cellspacing=1>
-				<tr>
-					<td bgcolor=white id="c00" onclick="set_here(this);">?</td>
-					<td bgcolor=white id="c01" onclick="set_here(this);">?</td>
-					<td bgcolor=white id="c02" onclick="set_here(this);">?</td>
-				</tr>
-				<tr>
-					<td bgcolor=white id="c10" onclick="set_here(this);">?</td>
-					<td bgcolor=white id="c11" onclick="set_here(this);">?</td>
-					<td bgcolor=white id="c12" onclick="set_here(this);">?</td>
-				</tr>
-				<tr>
-					<td bgcolor=white id="c20" onclick="set_here(this);">?</td>
-					<td bgcolor=white id="c21" onclick="set_here(this);">?</td>
-					<td bgcolor=white id="c22" onclick="set_here(this);">?</td>
-				</tr>
-			</table>
-			Next player:
-			<div id="next_player">?</div>
-			Winner:
-			<div id="winner">?</div>
-			<pre id="debug"></pre>
+			<div class="x_line">
+				<div class="x_label_name">GameID:</div>
+				<div class="x_label_value" id="gameid">'.$_SESSION['gameid'].'</div>
+			</div>
+			<div class="x_line">
+				<div class="x_label_name"></div>
+				<div class="x_label"><a href="?exit_game">exit</a>
+			</div>
+			</div>
+				<div class="x_line">
+				<div class="x_label_name"></div> 
+				<div class="x_label_value"><hr></div>
+			</div>
+				';
+			echo '
+				<div class="x_line">
+					<div class="x_label_name">Author:</div>
+					<div class="x_label_value" id="author">?</div>
+				</div>
+				<div class="x_line">
+					<div class="x_label_name">Player2:</div>
+					<div class="x_label_value" id="player2">?</div>
+				</div>
+				
+				<div class="x_line">
+					<div class="x_label_name">Next player:</div>
+					<div class="x_label_value" id="next_player">?</div>
+				</div>
+				
+				<div class="x_line">
+					<div class="x_label_name">Winner:</div>
+					<div class="x_label_value" id="winner">?</div>
+				</div>
+			
+				<div class="x_line">
+					<div class="x_label_name">Game:</div>
+					<div class="x_label_value">
+						<div class="x_fields">
+							<div class="x_fields_row">
+								<div id="c00" class="x_fields_cell" onclick="set_here(this);">?</div>
+								<div id="c01" class="x_fields_cell" onclick="set_here(this);">?</div>
+								<div id="c02" class="x_fields_cell" onclick="set_here(this);">?</div>
+							</div>
+							<div class="x_fields_row">
+								<div id="c10" class="x_fields_cell" onclick="set_here(this);">?</div>
+								<div id="c11" class="x_fields_cell" onclick="set_here(this);">?</div>
+								<div id="c12" class="x_fields_cell" onclick="set_here(this);">?</div>
+							</div>
+							<div class="x_fields_row">
+								<div id="c20" class="x_fields_cell" onclick="set_here(this);">?</div>
+								<div id="c21" class="x_fields_cell" onclick="set_here(this);">?</div>
+								<div id="c22" class="x_fields_cell" onclick="set_here(this);">?</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<pre id="debug"></pre>
 			
 			';
 		} 
 	}
+	echo '</div>';
 ?>
 	</body>
 </html>
